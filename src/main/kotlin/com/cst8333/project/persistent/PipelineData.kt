@@ -80,6 +80,7 @@ class PipelineData : PipelineDataSource {
             for (i in 0..99) {
                 allRecords.add(list[i])
             }
+            writeAllData(allRecords)
             return allRecords
         } else {
              return getAllRecords()
@@ -139,7 +140,7 @@ class PipelineData : PipelineDataSource {
         )
     }
 
-    override fun writeAllData(list: Collection<PipelineRecord>) {
+     fun writeAllData(list: Collection<PipelineRecord>) {
         val newFile = "src/main/resources/newFile.csv"
         val writer = Files.newBufferedWriter(Paths.get(newFile))
         val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT

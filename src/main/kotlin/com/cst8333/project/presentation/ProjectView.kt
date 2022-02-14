@@ -15,8 +15,6 @@ class ProjectView(val service: PipelineService) {
                     it.centre + ", " + it.province + ", " + it.company + ", " +
                     it.substance + ", " + it.significant + ", " + it.category + "<br>"
         }
-        service.writeRecords()
-
         result += "<br><b>Total records: $count</b>"
         return result
     }
