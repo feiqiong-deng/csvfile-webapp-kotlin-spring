@@ -4,11 +4,14 @@ import com.cst8333.project.model.PipelineRecord
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVPrinter
+import org.apache.commons.csv.CSVRecord
 import org.springframework.stereotype.Repository
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
+import kotlin.io.path.Path
 import kotlin.io.path.bufferedReader
+import kotlin.io.path.exists
 
 @Repository
 class PipelineData : PipelineDataSource {
@@ -23,12 +26,70 @@ class PipelineData : PipelineDataSource {
      */
     override fun getAll(): Collection<PipelineRecord> {
         var list = ArrayList<PipelineRecord>()
+        val newFile = Path("src/main/resources/newFile.csv")
         /**
          * Locate the csv file and use bufferedReader to read the file.
          * Initialize the CSVParser instance and set to ignore the header row, case-insensitive and trim the records.
          */
+        if(!newFile.exists()) {
+            try {
+                val reader = Paths.get("src/main/resources/pipeline-incidents-comprehensive-data.csv").bufferedReader()
+                val parser = CSVParser(
+                    reader, CSVFormat.DEFAULT.withFirstRecordAsHeader()
+                        .withIgnoreHeaderCase().withTrim()
+                )
+                /**
+                 * Iterate over the parser instance and extract records specific columns value from it.
+                 * Column records values are transferred and stored in a PipelineRecord object.
+                 * Each PipelineRecord object is added to the arraylist.
+                 */
+                try {
+                    for (record in parser) {
+                        val number = record.get(0)
+                        val type = record.get(1)
+                        val date = record.get(2)
+                        val centre = record.get(3)
+                        val province = record.get(4)
+                        val company = record.get(5)
+                        val substance = record.get(10)
+                        val significant = record.get(12)
+                        val category = record.get(17)
+
+                        list.add(
+                            PipelineRecord(
+                                number,
+                                type,
+                                date,
+                                centre,
+                                province,
+                                company,
+                                substance,
+                                significant,
+                                category
+                            )
+                        )
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+                reader.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            var allRecords = ArrayList<PipelineRecord>()
+            for (i in 0..99) {
+                allRecords.add(list[i])
+            }
+            return allRecords
+        } else {
+             return getAllRecords()
+        }
+    }
+
+    fun getAllRecords(): Collection<PipelineRecord>{
+        var list = ArrayList<PipelineRecord>()
         try {
-            val reader = Paths.get("src/main/resources/pipeline-incidents-comprehensive-data.csv").bufferedReader()
+            val reader = Paths.get("src/main/resources/newFile.csv").bufferedReader()
             val parser = CSVParser(
                 reader, CSVFormat.DEFAULT.withFirstRecordAsHeader()
                     .withIgnoreHeaderCase().withTrim()
@@ -40,29 +101,7 @@ class PipelineData : PipelineDataSource {
              */
             try {
                 for (record in parser) {
-                    val number = record.get(0)
-                    val type = record.get(1)
-                    val date = record.get(2)
-                    val centre = record.get(3)
-                    val province = record.get(4)
-                    val company = record.get(5)
-                    val substance = record.get(10)
-                    val significant = record.get(12)
-                    val category = record.get(17)
-
-                    list.add(
-                        PipelineRecord(
-                            number,
-                            type,
-                            date,
-                            centre,
-                            province,
-                            company,
-                            substance,
-                            significant,
-                            category
-                        )
-                    )
+                    assignRecord(record, list)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -71,12 +110,33 @@ class PipelineData : PipelineDataSource {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+        return list
+    }
 
-        var allRecords = ArrayList<PipelineRecord>()
-        for (i in 0..99) {
-            allRecords.add(list[i])
-        }
-        return allRecords
+    fun assignRecord(record: CSVRecord, list: ArrayList<PipelineRecord>) {
+        val number = record.get(0)
+        val type = record.get(1)
+        val date = record.get(2)
+        val centre = record.get(3)
+        val province = record.get(4)
+        val company = record.get(5)
+        val substance = record.get(6)
+        val significant = record.get(7)
+        val category = record.get(8)
+
+        list.add(
+            PipelineRecord(
+                number,
+                type,
+                date,
+                centre,
+                province,
+                company,
+                substance,
+                significant,
+                category
+            )
+        )
     }
 
     override fun writeAllData(list: Collection<PipelineRecord>) {
