@@ -50,20 +50,20 @@ class ProjectView(val service: PipelineService) {
                      @PathVariable("h") h: String, @PathVariable("i") i: String): String {
 
         val oneRecord = PipelineRecord("$a", "$b", "$mm/$dd/$yy", "$d", "$e",
-                                "$f", "$g", "$h", "i")
+                                "$f", "$g", "$h", "$i")
 
         service.addOneRecord(oneRecord)
 
-        return """
-               <h4>The record is already added.</h4>
-               <a href="http://localhost:8088/">BACK</a>
-               <br>
-               <b>Program by: Feiqiong DENG</b>
-               """
+        return messages("added")
     }
 
     @RequestMapping("/d")
     fun editRecord(): String {
+        return service.search("Incident Number")
+    }
+
+    @RequestMapping("/e")
+    fun deleteRecord(): String {
         return service.search("Incident Number")
     }
 
@@ -75,7 +75,8 @@ class ProjectView(val service: PipelineService) {
 
     @RequestMapping("/delete/{search}")
     fun showDeleteRecords(@PathVariable("search") search: String): String {
-        return "delete"
+        val record = service.getSearchResults("$search")
+        return service.editPage(record.first())
     }
 
     @RequestMapping("/edit/{a}/{b}/{mm}/{dd}/{yy}/{d}/{e}/{f}/{g}/{h}/{i}/{j}")
@@ -85,12 +86,22 @@ class ProjectView(val service: PipelineService) {
                      @PathVariable("h") h: String, @PathVariable("i") i: String, @PathVariable("j") j: String): String {
 
         val oneRecord = PipelineRecord("$a", "$b", "$mm/$dd/$yy", "$d", "$e",
-            "$f", "$g", "$h", "i")
+            "$f", "$g", "$h", "$i")
 
         service.editOneRecord(oneRecord, "$j")
 
+        return messages("updated")
+    }
+
+    @RequestMapping("/deleteOne/{delete}")
+    fun deleteRecords(@PathVariable("delete") delete: String): String {
+        val record = service.deleteOneRecord("$delete")
+        return messages("deleted")
+    }
+
+    fun messages(message: String): String {
         return """
-               <h4>The record is already updated.</h4>
+               <h4>The record is already $message.</h4>
                <a href="http://localhost:8088/">BACK</a>
                <br>
                <b>Program by: Feiqiong DENG</b>

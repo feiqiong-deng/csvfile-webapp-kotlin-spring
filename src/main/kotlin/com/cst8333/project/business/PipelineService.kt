@@ -14,4 +14,5 @@ class PipelineService(val source: PipelineData) {
     fun editPage(editRecord: PipelineRecord) = source.editPage(editRecord)
     fun addOneRecord(newRecord: PipelineRecord) = source.addOneRecord(newRecord)
     fun editOneRecord(newRecord: PipelineRecord, number: String) = source.editOneRecord(newRecord, number)
+    fun deleteOneRecord(number: String) = source.deleteOneRecord(number)
 }

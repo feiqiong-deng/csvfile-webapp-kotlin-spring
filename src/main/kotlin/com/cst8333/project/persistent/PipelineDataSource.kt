@@ -11,4 +11,5 @@ interface PipelineDataSource {
     fun editPage(editRecord: PipelineRecord): String
     fun addOneRecord(newRecord: PipelineRecord)
     fun editOneRecord(newRecord: PipelineRecord, number: String)
+    fun deleteOneRecord(number: String)
 }

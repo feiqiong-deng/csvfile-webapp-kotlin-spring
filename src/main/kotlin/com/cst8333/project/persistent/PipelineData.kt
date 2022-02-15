@@ -238,6 +238,15 @@ class PipelineData : PipelineDataSource {
         writeAllData(list)
     }
 
+    override fun deleteOneRecord(number: String) {
+        var list = ArrayList<PipelineRecord>()
+        list.addAll(getAllRecords())
+        val search = getSearchResults(number)
+        var delete = search.first()
+        list.remove(delete)
+        writeAllData(list)
+    }
+
     override fun showResults(name: String): String {
         return """
 				<h3>$name:</h3>
@@ -322,7 +331,7 @@ class PipelineData : PipelineDataSource {
 
     override fun editPage(editRecord: PipelineRecord): String {
         return """
-            	<b>Please edit the record:</b>
+            	<b>Edit / Delete the record:</b>
 				<br>
 				<br>
 				<table>
@@ -335,7 +344,8 @@ class PipelineData : PipelineDataSource {
         		<tr><td>Substance: </td><td><input id="substance" type="text" placeholder="${editRecord.substance}" onblur="getInput(\""+ substance+ "\")"/></td></tr>
         		<tr><td>Significant: </td><td><input id="significant" type="text" placeholder="${editRecord.significant}" onblur="getInput(\""+ significant+ "\")"/></td></tr>
         		<tr><td>Category: </td><td><input id="category" type="text" placeholder="${editRecord.category}" onblur="getInput(\""+ category+ "\")"/></td></tr>                   
-                <tr><td><button id="edit">Update</button></td></tr>
+                <tr><td><button id="edit">Edit</button></td></tr>
+                <tr><td><button id="delete">Delete</button></td></tr>
     			</table>
 	            <br>
 	            <a href="http://localhost:8088/">BACK</a>
@@ -352,6 +362,11 @@ class PipelineData : PipelineDataSource {
                           + "/" + getInput("date") + "/"  + getInput("center") + "/"  + getInput("province")
                           + "/" + getInput("company") + "/"  + getInput("substance")
                           + "/" + getInput("significant") + "/"  + getInput("category") + "/" +"${editRecord.number}";
+                      }
+                      
+                     document.getElementById("delete").addEventListener("click", deleteFunction);
+                     function deleteFunction() {
+                         window.location.href="http://localhost:8088/deleteOne/" + "${editRecord.number}";
                       }
                 </script>
             """
