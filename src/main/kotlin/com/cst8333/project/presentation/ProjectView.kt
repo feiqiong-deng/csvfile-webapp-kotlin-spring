@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*
 class ProjectView(val service: PipelineService) {
     @RequestMapping("/a")
     fun showAllRecords(): String {
-//        var result = service.showResults("All Records")
         var result = showResults("All Records")
         val count = service.getAllRecords().size
 
@@ -23,14 +22,11 @@ class ProjectView(val service: PipelineService) {
 
     @RequestMapping("/b")
     fun oneRecord(): String {
-//        return service.search("keyword")
         return search("keyword")
-
     }
 
     @RequestMapping("/result/{search}")
     fun showSearchRecords(@PathVariable("search") search: String): String {
-//        var result = service.showResults("Search Results")
         var result = showResults("Search Results")
         val count = service.getSearchResults("$search").size
         service.getSearchResults("$search").forEach {
@@ -44,7 +40,6 @@ class ProjectView(val service: PipelineService) {
 
     @RequestMapping("/c")
     fun addRecord(): String {
-//        return service.addPage()
         return addPage()
     }
 
@@ -64,20 +59,17 @@ class ProjectView(val service: PipelineService) {
 
     @RequestMapping("/d")
     fun editRecord(): String {
-//        return service.search("Incident Number")
         return search("Incident Number")
     }
 
     @RequestMapping("/e")
     fun deleteRecord(): String {
-//        return service.search("Incident Number")
         return search("Incident Number")
     }
 
     @RequestMapping("/edit/{search}")
     fun showEditRecords(@PathVariable("search") search: String): String {
         val record = service.getSearchResults("$search")
-//        return service.editPage(record.first())
         return editPage(record.first())
 
     }
@@ -85,7 +77,6 @@ class ProjectView(val service: PipelineService) {
     @RequestMapping("/delete/{search}")
     fun showDeleteRecords(@PathVariable("search") search: String): String {
         val record = service.getSearchResults("$search")
-//        return service.editPage(record.first())
         return editPage(record.first())
     }
 
@@ -105,7 +96,7 @@ class ProjectView(val service: PipelineService) {
 
     @RequestMapping("/deleteOne/{delete}")
     fun deleteRecords(@PathVariable("delete") delete: String): String {
-        val record = service.deleteOneRecord("$delete")
+        service.deleteOneRecord("$delete")
         return messages("deleted")
     }
 
