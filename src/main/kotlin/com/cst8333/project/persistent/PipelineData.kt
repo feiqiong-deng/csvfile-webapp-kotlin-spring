@@ -146,7 +146,7 @@ class PipelineData : PipelineDataSource {
         val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT
             .withHeader("Incident Number", "Incident Types", "Reported Date", "Nearest Populated Centre",
                         "Province", "Company", "Substance", "Significant", "What happened category"))
-        try{
+         try{
             for(eachRecord in list) {
                 csvPrinter.printRecord(eachRecord.number, eachRecord.type, eachRecord.date, eachRecord.centre,
                     eachRecord.province, eachRecord.company, eachRecord.substance, eachRecord.significant,
@@ -158,41 +158,6 @@ class PipelineData : PipelineDataSource {
             csvPrinter.flush()
             csvPrinter.close()
         }
-    }
-
-    override fun showResults(name: String): String {
-        return """
-				<b>$name:</b>
-				<p>Program by: Feiqiong DENG</p>
-	            <a href="http://localhost:8088/">BACK</a>
-                <br>
-                <br>
-				""".trimIndent()
-    }
-
-    override fun search(): String {
-        return """
-				<b>Please enter a keyword to search:</b>
-				<br>
-				<br>
-				<table>
-        		<tr><td><input type="text" onblur="getVal()"/></td></tr>
-                <tr><td><button id="myBtn">Search</button></td></tr>
-    			</table>
-	            <br>
-	            <a href="http://localhost:8088/">BACK</a>
-				<br>
-				<p>Program by: Feiqiong DENG</p>
-                <script>
-                    function getVal()  {
-                     return document.querySelector('input').value;
-                    }
-                     document.getElementById("myBtn").addEventListener("click", myFunction);
-                     function myFunction() {
-                         window.location.href="http://localhost:8088/result/"+getVal();
-                      }
-                </script>
-				""".trimIndent()
     }
 
     override fun getSearchResults(search: String): Collection<PipelineRecord> {
@@ -253,5 +218,142 @@ class PipelineData : PipelineDataSource {
             e.printStackTrace()
         }
         return list
+    }
+
+    override fun addOneRecord(newRecord: PipelineRecord) {
+        var list = ArrayList<PipelineRecord>()
+        list.addAll(getAllRecords())
+        list.add(newRecord)
+        writeAllData(list)
+    }
+
+    override fun editOneRecord(newRecord: PipelineRecord, number: String) {
+        var list = ArrayList<PipelineRecord>()
+        val search = getSearchResults(number)
+        var edit = search.first()
+        var original = getAllRecords()
+        list.addAll(getAllRecords())
+        val index = original.indexOf(edit)
+        list[index] = newRecord
+        writeAllData(list)
+    }
+
+    override fun showResults(name: String): String {
+        return """
+				<h3>$name:</h3>
+				<p>Program by: Feiqiong DENG</p>
+	            <a href="http://localhost:8088/">BACK</a>
+                <br>
+                <br>
+				""".trimIndent()
+    }
+
+    override fun search(keyword: String): String {
+        return """
+				<b>Please enter a $keyword to search:</b>
+				<br>
+				<br>
+				<table>
+        		<tr><td><input type="text" onblur="getVal()"/></td></tr>
+                <tr><td><button id="myBtn">View</button></td></tr>
+                <tr><td><button id="edit">Edit</button></td></tr>
+                <tr><td><button id="delete">Delete</button></td></tr>
+    			</table>
+	            <br>
+	            <a href="http://localhost:8088/">BACK</a>
+				<br>
+				<p>Program by: Feiqiong DENG</p>
+                <script>
+                    function getVal()  {
+                     return document.querySelector('input').value;
+                    }
+                     document.getElementById("myBtn").addEventListener("click", myFunction);
+                     function myFunction() {
+                         window.location.href="http://localhost:8088/result/"+getVal();
+                      }
+                      document.getElementById("edit").addEventListener("click", editFunction);
+                     function editFunction() {
+                         window.location.href="http://localhost:8088/edit/"+getVal();
+                      }
+                      document.getElementById("delete").addEventListener("click", deleteFunction);
+                     function deleteFunction() {
+                         window.location.href="http://localhost:8088/delete/"+getVal();
+                      }
+                </script>
+				""".trimIndent()
+    }
+
+    override fun addPage(): String {
+        return """
+            	<b>Please enter a new record:</b>
+				<br>
+				<br>
+				<table>
+        		<tr><td>Number: </td><td><input id="num" type="text" onblur="getInput(\""+ num+ "\")"/></td></tr>
+                <tr><td>Type: </td><td><input id="type" type="text" onblur="getInput(\""+ type+ "\")"/></td></tr>
+        		<tr><td>Date: </td><td><input id="date" type="text" onblur="getInput(\""+ date+ "\")"/></td></tr>
+        		<tr><td>Center: </td><td><input id="center" type="text" onblur="getInput(\""+ center+ "\")"/></td></tr>
+        		<tr><td>Province: </td><td><input id="province" type="text" onblur="getInput(\""+ province+ "\")"/></td></tr>
+        		<tr><td>Company: </td><td><input id="company" type="text" onblur="getInput(\""+ company+ "\")"/></td></tr>
+        		<tr><td>Substance: </td><td><input id="substance" type="text" onblur="getInput(\""+ substance+ "\")"/></td></tr>
+        		<tr><td>Significant: </td><td><input id="significant" type="text" onblur="getInput(\""+ significant+ "\")"/></td></tr>
+        		<tr><td>Category: </td><td><input id="category" type="text" onblur="getInput(\""+ category+ "\")"/></td></tr>                   
+                <tr><td><button id="add">Add</button></td></tr>
+    			</table>
+	            <br>
+	            <a href="http://localhost:8088/">BACK</a>
+				<br>
+				<p>Program by: Feiqiong DENG</p>
+                <script>
+                    function getInput(input)  {
+                     return document.getElementById(input).value;
+                    }
+            
+                     document.getElementById("add").addEventListener("click", myFunction);
+                     function myFunction() {
+                         window.location.href="http://localhost:8088/add/" + getInput("num") + "/" + getInput("type")
+                          + "/" + getInput("date") + "/"  + getInput("center") + "/"  + getInput("province")
+                          + "/" + getInput("company") + "/"  + getInput("substance")
+                          + "/" + getInput("significant") + "/"  + getInput("category");
+                      }
+                </script>
+            """
+    }
+
+    override fun editPage(editRecord: PipelineRecord): String {
+        return """
+            	<b>Please edit the record:</b>
+				<br>
+				<br>
+				<table>
+        		<tr><td>Number: </td><td><input id="num" type="text" placeholder="${editRecord.number}" onblur="getInput(\""+ num+ "\")"/></td></tr>
+                <tr><td>Type: </td><td><input id="type" type="text" placeholder="${editRecord.type}" onblur="getInput(\""+ type+ "\")"/></td></tr>
+        		<tr><td>Date: </td><td><input id="date" type="text" placeholder="${editRecord.date}" onblur="getInput(\""+ date+ "\")"/></td></tr>
+        		<tr><td>Center: </td><td><input id="center" type="text" placeholder="${editRecord.centre}" onblur="getInput(\""+ center+ "\")"/></td></tr>
+        		<tr><td>Province: </td><td><input id="province" type="text" placeholder="${editRecord.province}" onblur="getInput(\""+ province+ "\")"/></td></tr>
+        		<tr><td>Company: </td><td><input id="company" type="text" placeholder="${editRecord.company}" onblur="getInput(\""+ company+ "\")"/></td></tr>
+        		<tr><td>Substance: </td><td><input id="substance" type="text" placeholder="${editRecord.substance}" onblur="getInput(\""+ substance+ "\")"/></td></tr>
+        		<tr><td>Significant: </td><td><input id="significant" type="text" placeholder="${editRecord.significant}" onblur="getInput(\""+ significant+ "\")"/></td></tr>
+        		<tr><td>Category: </td><td><input id="category" type="text" placeholder="${editRecord.category}" onblur="getInput(\""+ category+ "\")"/></td></tr>                   
+                <tr><td><button id="edit">Update</button></td></tr>
+    			</table>
+	            <br>
+	            <a href="http://localhost:8088/">BACK</a>
+				<br>
+				<p>Program by: Feiqiong DENG</p>
+                <script>
+                    function getInput(input) {
+                     return document.getElementById(input).value;
+                    }
+                            
+                     document.getElementById("edit").addEventListener("click", myFunction);
+                     function myFunction() {
+                         window.location.href="http://localhost:8088/edit/" + getInput("num") + "/" + getInput("type")
+                          + "/" + getInput("date") + "/"  + getInput("center") + "/"  + getInput("province")
+                          + "/" + getInput("company") + "/"  + getInput("substance")
+                          + "/" + getInput("significant") + "/"  + getInput("category") + "/" +"${editRecord.number}";
+                      }
+                </script>
+            """
     }
 }
