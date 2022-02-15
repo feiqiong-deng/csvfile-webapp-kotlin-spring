@@ -1,0 +1,102 @@
+Incident Number,Incident Types,Reported Date,Nearest Populated Centre,Province,Company,Substance,Significant,What happened category
+INC123,HOHO,02/15/2022,Apple,Ontario,abc,change,yes,i
+INC2007-097,Release of Substance,01/02/2008,Grande Prairie,Alberta,Alliance Pipeline Ltd.,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2008-001,Release of Substance,01/02/2008,Cromer,Manitoba,Enbridge Pipelines Inc.,Crude Oil - Sweet,No,Corrosion and Cracking
+INC2008-004,Release of Substance,01/23/2008,Cromer,Manitoba,Enbridge Pipelines Inc.,Crude Oil - Sweet,No,Equipment Failure
+INC2008-008,Release of Substance,01/29/2008,Fort Nelson,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sweet,No,Defect and Deterioration
+INC2008-009,"Release of Substance, Adverse Environmental Effects",01/29/2008,Taylor,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Potassium Hydroxide (caustic solution),Yes,Equipment Failure
+INC2008-016,Release of Substance,02/23/2008,Beiseker,Alberta,Foothills Pipe Lines Ltd.,Natural Gas - Sweet,No,Defect and Deterioration
+INC2008-018,Release of Substance,02/25/2008,Moosomin,Saskatchewan,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Incorrect Operation
+INC2008-020,Release of Substance,03/03/2008,Dryden,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2008-021,Release of Substance,03/03/2008,Smooth Rock Falls,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Equipment Failure
+INC2008-027,Release of Substance,03/14/2008,Rapid City,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2008-030,Fatality,03/24/2008,Kerrobert,Saskatchewan,Enbridge Pipelines Inc.,Not Applicable,Yes,"External Interference, Incorrect Operation"
+INC2008-034,Release of Substance,04/01/2008,Haileybury,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2008-037,Release of Substance,04/18/2008,Kenora,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Defect and Deterioration
+INC2008-039,Release of Substance,04/21/2008,Regina,Saskatchewan,"Plains Marketing Canada, L.P.",Crude Oil - Sweet,No,Equipment Failure
+INC2008-040,Release of Substance,04/25/2008,Charlie Lake,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sour,Yes,Defect and Deterioration
+INC2008-041,Release of Substance,04/25/2008,Chetwynd,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sour,Yes,Equipment Failure
+INC2008-043,Fire,05/01/2008,Cromer,Manitoba,Enbridge Pipelines Inc.,Not Applicable,No,External Interference
+INC2008-045,Release of Substance,05/06/2008,Herschel,Saskatchewan,Enbridge Pipelines Inc.,Crude Oil - Sweet,No,Defect and Deterioration
+INC2008-048,Release of Substance,05/12/2008,Regina,Saskatchewan,Enbridge Pipelines Inc.,Crude Oil - Sweet,No,Equipment Failure
+INC2008-052,Fire,05/21/2008,Emerson,Manitoba,TransCanada PipeLines Limited,Not Applicable,No,Equipment Failure
+INC2008-055,Adverse Environmental Effects,05/31/2008,Fort St. John,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Not Applicable,Yes,Equipment Failure
+INC2008-056,Release of Substance,06/05/2008,Edmonton,Alberta,Enbridge Pipelines Inc.,Crude Oil - Sweet,No,Equipment Failure
+INC2008-057,Release of Substance,06/06/2008,Maple,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2008-058,Adverse Environmental Effects,06/09/2008,Not specified,New Brunswick,Emera Brunswick Pipeline Company Ltd.,Not Applicable,Yes,Equipment Failure
+INC2008-060,Release of Substance,06/12/2008,Portage La Prairie,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Equipment Failure
+INC2008-062,Fire,06/24/2008,Moyie,British Columbia,TransCanada PipeLines Limited,Not Applicable,No,External Interference
+INC2008-063,Fatality,06/25/2008,Herschel,Saskatchewan,Enbridge Pipelines Inc.,Not Applicable,Yes,Incorrect Operation
+INC2008-067,Release of Substance,07/06/2008,Edmonton,Alberta,Enbridge Pipelines Inc.,Crude Oil - Synthetic,No,Incorrect Operation
+INC2008-070,Release of Substance,07/17/2008,Moosomin,Saskatchewan,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Defect and Deterioration
+INC2008-072,Release of Substance,07/18/2008,Alameda,Saskatchewan,Alliance Pipeline Ltd.,Natural Gas - Sweet,No,Equipment Failure
+INC2008-075,Release of Substance,07/23/2008,Edmonton,Alberta,Enbridge Pipelines Inc.,Diesel Fuel,No,Equipment Failure
+INC2008-078,Release of Substance,07/31/2008,Hearst,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Defect and Deterioration
+INC2008-079,Release of Substance,08/08/2008,Herbert,Saskatchewan,Spectra Energy Empress Management Inc. as General Partner and Agent for Spectra Energy Empress L.P.,Propane,No,Equipment Failure
+INC2008-080,Serious Injury (CER or TSB),08/15/2008,Valemount,British Columbia,Trans Mountain Pipeline ULC,Not Applicable,Yes,Incorrect Operation
+INC2008-084,Fire,08/26/2008,Not specified,Saskatchewan,Enbridge Pipelines Inc.,Not Applicable,No,External Interference
+INC2008-085,Fire,09/04/2008,Not specified,Saskatchewan,Enbridge Pipelines Inc.,Not Applicable,No,Equipment Failure
+INC2008-086,Release of Substance,08/28/2008,Vermilion Bay,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2008-087,Release of Substance,09/05/2008,Taylor,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Butane,No,External Interference
+INC2008-091,Serious Injury (CER or TSB),09/16/2008,Pennfield,New Brunswick,Emera Brunswick Pipeline Company Ltd.,Not Applicable,Yes,External Interference
+INC2008-092,Serious Injury (CER or TSB),09/16/2008,Valemount,British Columbia,Trans Mountain Pipeline Inc.,Not Applicable,Yes,"External Interference, Incorrect Operation"
+INC2008-095,Release of Substance,09/26/2008,Falcon Lake,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2008-097,Fire,10/07/2008,Huntsville,Ontario,TransCanada PipeLines Limited,Not Applicable,No,External Interference
+INC2008-098,Release of Substance,10/16/2008,Portage La Prairie,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,External Interference
+INC2008-103,Release of Substance,11/04/2008,Reynolds,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Equipment Failure
+INC2008-109,"Fire, Release of Substance",11/20/2008,Taylor,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Mixed HVP Hydrocarbons,No,Equipment Failure
+INC2008-110,Release of Substance,11/21/2008,Fort Nelson,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Condensate,No,Incorrect Operation
+INC2008-111,Release of Substance,11/26/2008,Chetwynd,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Amine,No,Defect and Deterioration
+INC2008-112,Fire,11/26/2008,McLeod Lake,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Not Applicable,No,Defect and Deterioration
+INC2008-113,"Release of Substance, Adverse Environmental Effects",12/01/2008,Chetwynd,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Glycol,Yes,Defect and Deterioration
+INC2008-114,Release of Substance,12/02/2008,Winnipeg,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,External Interference
+INC2008-115,Fire,12/02/2008,Charlie Lake,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Not Applicable,No,Equipment Failure
+INC2008-119,Release of Substance,12/08/2008,McLeod Lake,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sweet,No,Defect and Deterioration
+INC2008-120,Release of Substance,12/09/2008,Winnipeg,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Equipment Failure
+INC2008-121,Adverse Environmental Effects,12/10/2008,Goldboro,Nova Scotia,EnCana Corporation,Not Applicable,Yes,Equipment Failure
+INC2008-123,Fire,12/17/2008,Edmonton,Alberta,Enbridge Pipelines Inc.,Not Applicable,No,External Interference
+INC2008-128,Release of Substance,01/13/2009,Hearst,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2009-002,Release of Substance,01/15/2009,Lincoln,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2009-009,Serious Injury (CER or TSB),02/09/2009,White City,Saskatchewan,Enbridge Pipelines Inc.,Not Applicable,Yes,"Equipment Failure, Incorrect Operation"
+INC2009-010,Release of Substance,02/09/2009,Lincoln,Ontario,TransCanada PipeLines Limited,Fuel Gas,No,Defect and Deterioration
+INC2009-015,"Serious Injury (CER or TSB), Release of Substance",02/20/2009,Wonowon,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sour,Yes,"Corrosion and Cracking, Incorrect Operation"
+INC2009-019,Release of Substance,03/05/2009,Portage La Prairie,Manitoba,TransCanada PipeLines Limited,Lube Oil,No,Defect and Deterioration
+INC2009-021,Release of Substance,03/10/2009,Potter,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Defect and Deterioration
+INC2009-024,Serious Injury (CER or TSB),03/13/2009,Sarnia,Ontario,Enbridge Pipelines Inc.,Not Applicable,Yes,Incorrect Operation
+INC2009-026,Release of Substance,03/23/2009,Not specified,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sour,Yes,External Interference
+INC2009-031,Release of Substance,04/07/2009,Tumbler Ridge,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sour,Yes,Equipment Failure
+INC2009-032,Release of Substance,04/08/2009,Mattice,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Natural Force Damage
+INC2009-034,Release of Substance,04/23/2009,Hamilton,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2009-035,"Fire, Release of Substance",04/23/2009,Fort Nelson,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Sulphur,No,Defect and Deterioration
+INC2009-036,Release of Substance,04/30/2009,Taylor,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sour,Yes,"External Interference, Incorrect Operation"
+INC2009-037,Release of Substance,05/01/2009,Upsala,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2009-039,Release of Substance,05/07/2009,Vegreville,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Defect and Deterioration
+INC2009-040,Release of Substance,05/07/2009,Burnaby,British Columbia,Trans Mountain Pipeline ULC,Crude Oil - Sweet,No,Defect and Deterioration
+INC2009-041,Release of Substance,05/11/2009,Valleyview,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2009-042,Release of Substance,05/14/2009,Not specified,Quebec,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Equipment Failure
+INC2009-043,Fire,05/15/2009,Fort Nelson,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Not Applicable,No,Equipment Failure
+INC2009-045,Release of Substance,05/22/2009,Rosetown,Saskatchewan,Kinder Morgan Cochin ULC,Propane,No,Defect and Deterioration
+INC2009-047,Fire,05/24/2009,Chetwynd,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Not Applicable,No,Equipment Failure
+INC2009-048,Release of Substance,05/27/2009,Wandering River,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Defect and Deterioration
+INC2009-049,Release of Substance,06/03/2009,Vegreville,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2009-053,Release of Substance,06/22/2009,Loreburn,Saskatchewan,Alliance Pipeline Ltd.,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2009-054,Release of Substance,06/28/2009,Falcon Lake,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Defect and Deterioration
+INC2009-055,Release of Substance,06/29/2009,Colborne,Ontario,Enbridge Pipelines Inc.,Crude Oil - Sweet,No,Equipment Failure
+INC2009-056,Release of Substance,07/01/2009,Kobes,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sour,Yes,Corrosion and Cracking
+INC2009-057,Operation Beyond Design Limits,07/02/2009,Saint-Eustache,Quebec,Trans-Northern Pipelines Inc.,Not Applicable,No,Equipment Failure
+INC2009-058,"Fire, Release of Substance",07/05/2009,Hanna,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,External Interference
+INC2009-060,Release of Substance,07/13/2009,Fort Nelson,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sour,Yes,Corrosion and Cracking
+INC2009-063,Release of Substance,07/15/2009,Smokey Lake,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Equipment Failure
+INC2009-065,Fire,07/16/2009,Wainwright,Alberta,NOVA Gas Transmission Ltd.,Not Applicable,No,External Interference
+INC2009-066,"Fire, Release of Substance",07/20/2009,Hay River,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,Yes,Corrosion and Cracking
+INC2009-067,Release of Substance,07/20/2009,Saint John,New Brunswick,Emera Brunswick Pipeline Company Ltd.,Natural Gas - Sweet,No,Equipment Failure
+INC2009-068,Release of Substance,07/21/2009,Crowsnest Pass,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,"Defect and Deterioration, Equipment Failure"
+INC2009-072,Fire,07/24/2009,Not specified,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Not Applicable,No,Equipment Failure
+INC2009-075,Release of Substance,07/31/2009,Grande Prairie,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Equipment Failure
+INC2009-076,Release of Substance,08/04/2009,Edson,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Defect and Deterioration
+INC2009-078,Operation Beyond Design Limits,08/10/2009,Sarnia,Ontario,Enbridge Pipelines Inc.,Not Applicable,No,External Interference
+INC2009-079,Operation Beyond Design Limits,08/11/2009,Chetwynd,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Not Applicable,No,Equipment Failure
+INC2009-080,Fire,08/11/2009,Bowmanville,Ontario,TransCanada PipeLines Limited,Not Applicable,No,Equipment Failure
+INC2009-084,Release of Substance,08/24/2009,Williams Lake,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sweet,No,Corrosion and Cracking
+INC2009-086,Release of Substance,09/02/2009,Hanna,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Equipment Failure
+INC2009-087,Release of Substance,09/02/2009,Zama Lake,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Corrosion and Cracking
