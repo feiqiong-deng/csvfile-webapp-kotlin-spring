@@ -4,8 +4,22 @@ import com.cst8333.project.business.PipelineService
 import com.cst8333.project.model.PipelineRecord
 import org.springframework.web.bind.annotation.*
 
+/**
+ * This is a class of presentation layer to interact with users.
+ * @author Feiqiong Deng
+ * @param service The input of PipelineService object from the service layer.
+ * This class include functions to show the view in web browser to the users.
+ * It also gets the input from the users and presents information to the users.
+ * Most functions is this class are using RequestMapping annotation to map web requests.
+ */
 @RestController
 class ProjectView(val service: PipelineService) {
+
+    /**
+     * This is a function to show all records.
+     * The function will use the service object to call the getAllRecords to get all data.
+     * It will use html format to show all records to users.
+     */
     @RequestMapping("/a")
     fun showAllRecords(): String {
         var result = showResults("All Records")
@@ -20,11 +34,20 @@ class ProjectView(val service: PipelineService) {
         return result
     }
 
+    /**
+     * This is a function to present search page to users.
+     */
     @RequestMapping("/b")
     fun oneRecord(): String {
         return search("keyword")
     }
 
+    /**
+     * This is a function to present the page of showing the search results to users.
+     * @param search It is the input of search keyword from the users.
+     * It will use call the search method from the business layer.
+     * Then it will use html format to show all search results to users.
+     */
     @RequestMapping("/result/{search}")
     fun showSearchRecords(@PathVariable("search") search: String): String {
         var result = showResults("Search Results")
@@ -38,11 +61,29 @@ class ProjectView(val service: PipelineService) {
         return result
     }
 
+    /**
+     * This is the method is to map to the show users the adding record page.
+     */
     @RequestMapping("/c")
     fun addRecord(): String {
         return addPage()
     }
 
+    /**
+     * This is the method to map to the get the adding record input data from users.
+     * @param a The input of incident number from the user.
+     * @param b The input of incident type from the user.
+     * @param mm The input of incident month from the user.
+     * @param dd The input of incident day from the user.
+     * @param yy The input of incident year from the user.
+     * @param d The input of center from the user.
+     * @param e The input of province from the user.
+     * @param f The input of company from the user.
+     * @param g The input of substance from the user.
+     * @param h The input of significance from the user.
+     * @param i The input of category from the user.
+     * The function will transfer input data to pipeline object and add it to the datafile.
+     */
     @RequestMapping("/add/{a}/{b}/{mm}/{dd}/{yy}/{d}/{e}/{f}/{g}/{h}/{i}")
     fun addOneRecord(@PathVariable("a") a: String, @PathVariable("b") b: String, @PathVariable("mm") mm: String,
                      @PathVariable("dd") dd: String, @PathVariable("yy") yy: String, @PathVariable("d") d: String,
@@ -57,16 +98,29 @@ class ProjectView(val service: PipelineService) {
         return messages("added")
     }
 
+    /**
+     * This is the method is to map to the show users the editing record page.
+     * This page will get the input of searching keyword from the user.
+     */
     @RequestMapping("/d")
     fun editRecord(): String {
         return search("Incident Number")
     }
 
+    /**
+     * This is the method is to map to the page to ask user to enter the incident number of
+     * the record to be deleted.
+     */
     @RequestMapping("/e")
     fun deleteRecord(): String {
         return search("Incident Number")
     }
 
+    /**
+     * This is the method is to map to the show users the editing record page.
+     * @param search The searching keyword from the user.
+     * After searching the record from the datafile, the record to be edited will be shown to the user.
+     */
     @RequestMapping("/edit/{search}")
     fun showEditRecords(@PathVariable("search") search: String): String {
         val record = service.getSearchResults("$search")
@@ -74,12 +128,33 @@ class ProjectView(val service: PipelineService) {
 
     }
 
+    /**
+     * This function is to delete a record from the datafile.
+     * @param search The searching keyword from the user.
+     * The user is asked to enter the unique incident number of the pipeline incident.
+     * The function will firstly search the record using the incident number and then delete it.
+     */
     @RequestMapping("/delete/{search}")
     fun showDeleteRecords(@PathVariable("search") search: String): String {
         val record = service.getSearchResults("$search")
         return editPage(record.first())
     }
 
+    /**
+     * This is a function to show an editable page to edit the record to the user.
+     * @param a The input of incident number from the user.
+     * @param b The input of incident type from the user.
+     * @param mm The input of incident month from the user.
+     * @param dd The input of incident day from the user.
+     * @param yy The input of incident year from the user.
+     * @param d The input of center from the user.
+     * @param e The input of province from the user.
+     * @param f The input of company from the user.
+     * @param g The input of substance from the user.
+     * @param h The input of significance from the user.
+     * @param i The input of category from the user.
+     * After the getting all information from the users, the function will update the edited record in the datafile.
+     */
     @RequestMapping("/edit/{a}/{b}/{mm}/{dd}/{yy}/{d}/{e}/{f}/{g}/{h}/{i}/{j}")
     fun ediTOneRecord(@PathVariable("a") a: String, @PathVariable("b") b: String, @PathVariable("mm") mm: String,
                      @PathVariable("dd") dd: String, @PathVariable("yy") yy: String, @PathVariable("d") d: String,
@@ -94,12 +169,21 @@ class ProjectView(val service: PipelineService) {
         return messages("updated")
     }
 
+    /**
+     * This is the function to delete a record.
+     * @param delete The input of incident number from the user.
+     * After searching the record from the datafile, the record will be deleted.
+     */
     @RequestMapping("/deleteOne/{delete}")
     fun deleteRecords(@PathVariable("delete") delete: String): String {
         service.deleteOneRecord("$delete")
         return messages("deleted")
     }
 
+    /**
+     * This is a function to show users some information using html strings.
+     * @param message The string message input to show.
+     */
     fun messages(message: String): String {
         return """
                <h4>The record is already $message.</h4>
@@ -109,6 +193,10 @@ class ProjectView(val service: PipelineService) {
                """
     }
 
+    /**
+     * This is a function to show users results using html strings.
+     * @param name The string input of message to show what kind of data results are presented.
+     */
      fun showResults(name: String): String {
         return """
 				<h3>$name:</h3>
@@ -119,6 +207,10 @@ class ProjectView(val service: PipelineService) {
 				""".trimIndent()
     }
 
+    /**
+     * This is the function returning a page using html to show a search page to ask users to enter required data.
+     * @param keyword The string input of the search keyword from the users.
+     */
      fun search(keyword: String): String {
         return """
 				<b>Please enter a $keyword to search:</b>
@@ -154,6 +246,9 @@ class ProjectView(val service: PipelineService) {
 				""".trimIndent()
     }
 
+    /**
+     * This is a function to present the adding page to users using html format.
+     */
      fun addPage(): String {
         return """
             	<b>Please enter a new record:</b>
@@ -191,6 +286,10 @@ class ProjectView(val service: PipelineService) {
             """
     }
 
+    /**
+     * This is a function to present the editing page to users using html format.
+     * @param editRecord The input of a pipeline record from users after searching in the datafile.
+     */
      fun editPage(editRecord: PipelineRecord): String {
         return """
             	<b>Edit / Delete the record:</b>

@@ -13,12 +13,17 @@ import kotlin.io.path.Path
 import kotlin.io.path.bufferedReader
 import kotlin.io.path.exists
 
+/**
+ * This is a class to implement the interface PipelineDataSource class.
+ * @author Feiqiong Deng
+ * This class has all methods to interact with the pipeline data and implements all methods from the interface.
+ * There are methods of reading the csv file and getting all records from the file, searching specific records,
+ * adding one new record to the file, deleting one record from the file and updating records.
+ */
 @Repository
 class PipelineData : PipelineDataSource {
     /**
      * This is a function to read the dataset file.
-     * @author Feiqiong DENG
-     * @param list The ArrayList input for the function and will be populated by the records of the dataset file.
      * This function is firstly to read the csv file in the resource folder by using bufferedReader.
      * CSVParser is from the Apache Commons library and can handle reading and writing csv file in Kotlin.
      * Getting the values of specific columns and stored in PipelineRecord object.
@@ -42,6 +47,7 @@ class PipelineData : PipelineDataSource {
                  * Iterate over the parser instance and extract records specific columns value from it.
                  * Column records values are transferred and stored in a PipelineRecord object.
                  * Each PipelineRecord object is added to the arraylist.
+                 * The first 100 records will be stored in a new file.
                  */
                 try {
                     for (record in parser) {
@@ -87,6 +93,12 @@ class PipelineData : PipelineDataSource {
         }
     }
 
+    /**
+     * This is a function to use CSVParser to read a file to get all records from the file.
+     * This function is firstly to read the csv file in the resource folder by using bufferedReader.
+     * Getting the values of specific columns and stored in PipelineRecord object.
+     * Each PipelineRecord object is added to the list and the function return a list of pipeline objects.
+     */
     fun getAllRecords(): Collection<PipelineRecord>{
         var list = ArrayList<PipelineRecord>()
         try {
@@ -114,6 +126,11 @@ class PipelineData : PipelineDataSource {
         return list
     }
 
+    /**
+     * This is a function to transfer the data from the file to pipeline object.
+     * @param record The CSVRecord input reading data from a file.
+     * @param list The ArrayList input for the function and will be populated by the records of the dataset file.
+     */
     fun assignRecord(record: CSVRecord, list: ArrayList<PipelineRecord>) {
         val number = record.get(0)
         val type = record.get(1)
@@ -140,6 +157,12 @@ class PipelineData : PipelineDataSource {
         )
     }
 
+    /**
+     * This is a function to write data to the datafile.
+     * @param list The Collection of pipeline objects input to write to the datafile.
+     * It uses the CSVPrinter to write data to the datafile.
+     * The CSVPrinter formats the first row is header and will write each pipeline object to each row of data.
+     */
      fun writeAllData(list: Collection<PipelineRecord>) {
         val newFile = "src/main/resources/newFile.csv"
         val writer = Files.newBufferedWriter(Paths.get(newFile))
@@ -160,6 +183,12 @@ class PipelineData : PipelineDataSource {
         }
     }
 
+    /**
+     * This method implements the function from the interface.
+     * @param search This is a string input to search in the datafile.
+     * CSVParser will read all data in the datafile and if records contain the string input.
+     * The records will be added into a list and returned a list of records containing the search keyword.
+     */
     override fun getSearchResults(search: String): Collection<PipelineRecord> {
         var list = ArrayList<PipelineRecord>()
         /**
@@ -190,6 +219,10 @@ class PipelineData : PipelineDataSource {
                     val significant = record.get(7)
                     val category = record.get(8)
 
+                    /**
+                     * This is to specify the conditions to get the records.
+                     * Either property of the pipeline object contains the search word will be added to the list.
+                     */
                     if(number.contains(search) || type.contains(search) || date.contains(search) ||
                             centre.contains(search) || province.contains(search) ||
                         company.contains(search) || substance.contains(search) ||
@@ -220,6 +253,12 @@ class PipelineData : PipelineDataSource {
         return list
     }
 
+    /**
+     * This method implements the function addOneRecord from the interface.
+     * @param newRecord This is an input of pipeline object to be added to the datafile.
+     * The new pipeline object will be added to the list of all records.
+     * Then the new record will be written to the datafile.
+     */
     override fun addOneRecord(newRecord: PipelineRecord) {
         var list = ArrayList<PipelineRecord>()
         list.addAll(getAllRecords())
@@ -227,6 +266,13 @@ class PipelineData : PipelineDataSource {
         writeAllData(list)
     }
 
+    /**
+     * This method implements the function editOneRecord from the interface.
+     * @param newRecord This is an input of pipeline object to be edited.
+     * @param number This is an input to get the record from the datafile to be updated.
+     * The function will search the record is edited and then reassign the edited record to replace it.
+     * Then the updated record is written to the datafile.
+     */
     override fun editOneRecord(newRecord: PipelineRecord, number: String) {
         var list = ArrayList<PipelineRecord>()
         val search = getSearchResults(number)
@@ -238,6 +284,13 @@ class PipelineData : PipelineDataSource {
         writeAllData(list)
     }
 
+    /**
+     * This method implements the function deleteOneRecord from the interface.
+     * @param number This is an input to get the record from the datafile to be deleted.
+     * The function will search the record to be deleted from the datafile.
+     * Then the record is removed from the list.
+     * All records after deletion will be written to the datafile.
+     */
     override fun deleteOneRecord(number: String) {
         var list = ArrayList<PipelineRecord>()
         list.addAll(getAllRecords())
