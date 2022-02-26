@@ -53,7 +53,6 @@ INC2008-115,Fire,12/02/2008,Charlie Lake,British Columbia,"Westcoast Energy Inc.
 INC2008-119,Release of Substance,12/08/2008,McLeod Lake,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sweet,No,Defect and Deterioration
 INC2008-120,Release of Substance,12/09/2008,Winnipeg,Manitoba,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Equipment Failure
 INC2008-121,Adverse Environmental Effects,12/10/2008,Goldboro,Nova Scotia,EnCana Corporation,Not Applicable,Yes,Equipment Failure
-INC2008-123,Fire,12/17/2008,Edmonton,Alberta,Enbridge Pipelines Inc.,Not Applicable,No,External Interference
 INC2008-128,Release of Substance,01/13/2009,Hearst,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
 INC2009-002,Release of Substance,01/15/2009,Lincoln,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
 INC2009-009,Serious Injury (CER or TSB),02/09/2009,White City,Saskatchewan,Enbridge Pipelines Inc.,Not Applicable,Yes,"Equipment Failure, Incorrect Operation"
@@ -99,3 +98,4 @@ INC2009-080,Fire,08/11/2009,Bowmanville,Ontario,TransCanada PipeLines Limited,No
 INC2009-084,Release of Substance,08/24/2009,Williams Lake,British Columbia,"Westcoast Energy Inc., carrying on business as Spectra Energy Transmission",Natural Gas - Sweet,No,Corrosion and Cracking
 INC2009-086,Release of Substance,09/02/2009,Hanna,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Equipment Failure
 INC2009-087,Release of Substance,09/02/2009,Zama Lake,Alberta,NOVA Gas Transmission Ltd.,Natural Gas - Sweet,No,Corrosion and Cracking
+INC2020-123,Release of Substance,05/01/2009,Upsala,Ontario,TransCanada PipeLines Limited,Natural Gas - Sweet,No,Corrosion and Cracking
