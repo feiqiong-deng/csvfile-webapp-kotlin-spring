@@ -1,0 +1,39 @@
+@startuml
+actor User
+participant ":ProjectView(service)"
+participant "service:PipelineService(source)"
+participant "source:PipelineData"
+
+User -> ":ProjectView(service)": Enter to view all records
+":ProjectView(service)" -> "service:PipelineService(source)":     getAllRecords(): Collection<PipelineRecord>
+"service:PipelineService(source)" -> "source:PipelineData": getAll(): Collection<PipelineRecord>
+":ProjectView(service)" <-- "service:PipelineService(source)": all records
+"service:PipelineService(source)" <-- "source:PipelineData": all records
+User <- ":ProjectView(service)": showAllRecords(records): String
+
+User -> ":ProjectView(service)": Enter to search records
+":ProjectView(service)" -> "service:PipelineService(source)": getSearchResults(search)
+"service:PipelineService(source)" -> "source:PipelineData": getSearchResults(search): Collection<PipelineRecord>
+":ProjectView(service)" <-- "service:PipelineService(source)": search results
+"service:PipelineService(source)" <-- "source:PipelineData": search results
+User <- ":ProjectView(service)": showSearchRecords(search): String
+
+User -> ":ProjectView(service)": Enter to add a new record
+User <- ":ProjectView(service)": Show a page to ask to add data of the record
+User -> ":ProjectView(service)": Input information to add a record
+":ProjectView(service)" -> "service:PipelineService(source)": addOneRecord(newRecord)
+"service:PipelineService(source)" -> "source:PipelineData": addOneRecord(newRecord)
+
+User -> ":ProjectView(service)": Enter to edit a record
+User <- ":ProjectView(service)": Ask to edit information of the record
+User -> ":ProjectView(service)": Input information to edit a record
+":ProjectView(service)" -> "service:PipelineService(source)": editOneRecord(newRecord, number)
+"service:PipelineService(source)" -> "source:PipelineData": editOneRecord(newRecord, number)
+
+User -> ":ProjectView(service)": Enter to delete a new record
+User <- ":ProjectView(service)": Ask to enter the record number
+User -> ":ProjectView(service)": Input the record number
+":ProjectView(service)" -> "service:PipelineService(source)": deleteOneRecord(number)
+"service:PipelineService(source)" -> "source:PipelineData": deleteOneRecord(number)
+
+@enduml

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CST8333 PROJECT</title>
+</head>
+<body>
+<h3>Welcome, Please Enter an option</h3>
+    <form action="/" method="POST">
+    <table>
+        <tr>
+            <td>(A) View all of the records</td>
+        </tr>
+        <tr>
+            <td>(B) Search record</td>
+        </tr>
+        <tr>
+            <td>(C) Add one new record</td>
+        </tr>
+        <tr>
+            <td>(D) Edit one record</td>
+        </tr>
+        <tr>
+            <td>(E) Delete one record</td>
+        </tr>
+        <tr>
+            <td>(F) Sort all records</td>
+        </tr>
+        <tr>
+            <td><label path="br"></label></td>
+        </tr>
+        <tr>
+            <td>Your choice:</td>
+        </tr>
+        <tr>
+            <td><input name="input"/></td>
+            <td><input type="submit" value="Submit"/></td>
+        </tr>
+    </table>
+</form>
+<br/>
+<b>Program by: Feiqiong DENG</b>
+<script>
+document.querySelector('form').onsubmit = function() {
+ this.setAttribute('action', "/" + document.querySelector('input[name=input]').value.toLowerCase())
+}
+</script>
+</body>
+</html>

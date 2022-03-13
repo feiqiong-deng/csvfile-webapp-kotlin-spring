@@ -1,0 +1,77 @@
+@startuml
+
+package "Model Layer"  #DDDDDD {
+   class PipelineRecord {
+        number: String
+        type: String
+         date: String
+            centre: String
+           province: String
+          company: String
+           substance: String
+            significant: String
+            category: String
+   }
+}
+
+
+package "Persistent Layer"  #DDDDDD {
+interface PipelineDataSource {
+        getAll(): Collection<PipelineRecord>
+        getSearchResults(search: String): Collection<PipelineRecord>
+        addOneRecord(newRecord: PipelineRecord)
+        editOneRecord(newRecord: PipelineRecord, number: String)
+        deleteOneRecord(number: String)
+
+}
+
+class PipelineData {
+    getAll(): Collection<PipelineRecord>
+            getSearchResults(search: String): Collection<PipelineRecord>
+            addOneRecord(newRecord: PipelineRecord)
+            editOneRecord(newRecord: PipelineRecord, number: String)
+            deleteOneRecord(number: String)
+            getAllRecords(): Collection<PipelineRecord>
+            assignRecord(record: CSVRecord, list: ArrayList<PipelineRecord>)
+ writeAllData(list: Collection<PipelineRecord>)
+}
+   class PipelineData implements PipelineDataSource
+   PipelineData ..> PipelineRecord
+}
+
+package "Business Layer" #DDDDDD {
+class PipelineService {
+ getAllRecords(): Collection<PipelineRecord>
+    getSearchResults(search: String)
+     addOneRecord(newRecord: PipelineRecord)
+    editOneRecord(newRecord: PipelineRecord, number: String)
+     deleteOneRecord(number: String)
+}
+     PipelineService ..> PipelineData
+
+}
+
+package "Presentation Layer" #DDDDDD {
+class ProjectView {
+showAllRecords(): String
+oneRecord(): String
+ showSearchRecords(search: String): String
+ addRecord(): String
+ addOneRecord(a: String, b: String,  mm: String, dd: String, yy: String, d: String,
+ e: String, f: String, g: String, h: String, i: String): String
+editRecord(): String
+deleteRecord(): String
+showEditRecords(search: String): String
+showDeleteRecords(search: String): String
+ediTOneRecord(a: String, b: String,  mm: String, dd: String, yy: String, d: String,
+             e: String, f: String, g: String, h: String, i: String): String
+deleteRecords(delete: String): String
+messages(message: String): String
+search(keyword: String): String
+ addPage(): String
+ editPage(editRecord: PipelineRecord): String
+}
+     ProjectView ..> PipelineService
+}
+@enduml
+
