@@ -35,19 +35,57 @@ class ProjectView(val service: PipelineService) {
     }
 
     /**
-     * This is a function to show all records.
+     * This is a function to navigate to the sort page.
      * The function will use the service object to call the getAllRecords to get all data.
      * It will use html format to show all records to users.
      */
     @RequestMapping("/f")
-    fun sortllRecords(): String {
-        var result = showResults("All Records")
-        val count = service.getAllRecords().size
+    fun sortPage(): String {
+        return sort()
+    }
 
-        service.getAllRecords().forEach {
-            result += it.number + ", " + it.type + ", " + it.date + ", " +
-                    it.centre + ", " + it.province + ", " + it.company + ", " +
-                    it.substance + ", " + it.significant + ", " + it.category + "<br>"
+    /**
+     * This is a function to present the page of showing the search results to users.
+     * @param sortBy It is the input criterion to sort records from the users.
+     * It will use call the getSortedResults method from the business layer.
+     * Then it will use html format to show all sorted results to users.
+     */
+    @RequestMapping("/sort/{sortBy}")
+    fun showSortedRecords(@PathVariable("sortBy") sortBy: String): String {
+        var result = showResults("Results after sort")
+        val count = service.getSortedResults("$sortBy").size
+        service.getSortedResults("$sortBy").forEach {
+
+            when (sortBy) {
+                "a" ->  result += it.number + ", " + it.type + ", " + it.date + ", " +
+                        it.centre + ", " + it.province + ", " + it.company + ", " +
+                        it.substance + ", " + it.significant + ", " + it.category + "<br>"
+                "b" ->  result += it.type + ", " + it.number + ", " + it.date + ", " +
+                        it.centre + ", " + it.province + ", " + it.company + ", " +
+                        it.substance + ", " + it.significant + ", " + it.category + "<br>"
+                "c" ->  result += it.date + ", " + it.number + ", " + it.type + ", " +
+                        it.centre + ", " + it.province + ", " + it.company + ", " +
+                        it.substance + ", " + it.significant + ", " + it.category + "<br>"
+                "d" ->  result += it.centre + ", " + it.number + ", " + it.type + ", " + it.date + ", " +
+                        it.province + ", " + it.company + ", " +
+                        it.substance + ", " + it.significant + ", " + it.category + "<br>"
+                "e" ->  result +=  it.province + ", " + it.number + ", " + it.type + ", " + it.date + ", " +
+                        it.centre + ", " + it.company + ", " +
+                        it.substance + ", " + it.significant + ", " + it.category + "<br>"
+                "f" ->  result += it.company + ", " + it.number + ", " + it.type + ", " + it.date + ", " +
+                        it.centre + ", " + it.province + ", " +
+                        it.substance + ", " + it.significant + ", " + it.category + "<br>"
+                "g" ->  result += it.substance + ", " + it.number + ", " + it.type + ", " + it.date + ", " +
+                        it.centre + ", " + it.province + ", " + it.company + ", " +
+                        it.significant + ", " + it.category + "<br>"
+                "h" ->  result += it.significant + ", " + it.number + ", " + it.type + ", " + it.date + ", " +
+                        it.centre + ", " + it.province + ", " + it.company + ", " +
+                        it.substance + ", " + it.category + "<br>"
+                "i" ->  result += it.category + it.number + ", " + it.type + ", " + it.date + ", " +
+                        it.centre + ", " + it.province + ", " + it.company + ", " +
+                        it.substance + ", " + it.significant + ", " +  "<br>"
+            }
+
         }
         result += "<br><b>Total records: $count</b>"
         return result
@@ -206,7 +244,7 @@ class ProjectView(val service: PipelineService) {
     fun messages(message: String): String {
         return """
                <h4>The record is already $message.</h4>
-               <a href="http://localhost:8088/">BACK</a>
+               <a href="http://localhost:8087/">BACK</a>
                <br>
                <b>Program by: Feiqiong DENG</b>
                """
@@ -220,7 +258,7 @@ class ProjectView(val service: PipelineService) {
         return """
 				<h3>$name:</h3>
 				<p>Program by: Feiqiong DENG</p>
-	            <a href="http://localhost:8088/">BACK</a>
+	            <a href="http://localhost:8087/">BACK</a>
                 <br>
                 <br>
 				""".trimIndent()
@@ -242,7 +280,7 @@ class ProjectView(val service: PipelineService) {
                 <tr><td><button id="delete">Delete</button></td></tr>
     			</table>
 	            <br>
-	            <a href="http://localhost:8088/">BACK</a>
+	            <a href="http://localhost:8087/">BACK</a>
 				<br>
 				<p>Program by: Feiqiong DENG</p>
                 <script>
@@ -251,18 +289,78 @@ class ProjectView(val service: PipelineService) {
                     }
                      document.getElementById("myBtn").addEventListener("click", myFunction);
                      function myFunction() {
-                         window.location.href="http://localhost:8088/result/"+getVal();
+                         window.location.href="http://localhost:8087/result/"+getVal();
                       }
                       document.getElementById("edit").addEventListener("click", editFunction);
                      function editFunction() {
-                         window.location.href="http://localhost:8088/edit/"+getVal();
+                         window.location.href="http://localhost:8087/edit/"+getVal();
                       }
                       document.getElementById("delete").addEventListener("click", deleteFunction);
                      function deleteFunction() {
-                         window.location.href="http://localhost:8088/delete/"+getVal();
+                         window.location.href="http://localhost:8087/delete/"+getVal();
                       }
                 </script>
 				""".trimIndent()
+    }
+
+    /**
+     * This is the function returning a page using html to show a sort page to ask users to enter required data.
+     */
+    fun sort(): String {
+        return """
+            <b>Please enter a criterion to sort records:</b>
+            <br>
+            <br>
+                <table>
+                    <tr>
+                        <td>(A) Incident Number</td>
+                    </tr>
+                    <tr>
+                        <td>(B) Incident Types</td>
+                    </tr>
+                    <tr>
+                        <td>(C) Reported Date</td>
+                    </tr>
+                    <tr>
+                        <td>(D) Nearest Populated Centre</td>
+                    </tr>
+                    <tr>
+                        <td>(E) Province</td>
+                    </tr>
+                    <tr>
+                        <td>(F) Company</td>
+                    </tr>
+                     <tr>
+                        <td>(G) Substance</td>
+                    </tr>
+                     <tr>
+                        <td>(H) Significant</td>
+                    </tr>
+                     <tr>
+                        <td>(I) What happened category</td>
+                    </tr>
+                    <tr>
+                        <td><label path="br"></label></td>
+                    </tr>
+                    <tr>
+                        <td>Your choice:</td>
+                    </tr>
+                    <tr>
+                        <td><input name="input"/></td>
+                         <tr><td><button id="myBtn">Submit</button></td></tr>
+                    </tr>
+                </table>
+                <p>Program by: Feiqiong DENG</p>
+                <script>
+              function getVal()  {
+                return document.querySelector('input').value;
+              }
+               document.getElementById("myBtn").addEventListener("click", myFunction);
+                 function myFunction() {
+                 window.location.href="http://localhost:8087/sort/"+getVal();
+                 }
+                 </script>
+            """.trimIndent()
     }
 
     /**
@@ -286,7 +384,7 @@ class ProjectView(val service: PipelineService) {
                 <tr><td><button id="add">Add</button></td></tr>
     			</table>
 	            <br>
-	            <a href="http://localhost:8088/">BACK</a>
+	            <a href="http://localhost:8087/">BACK</a>
 				<br>
 				<p>Program by: Feiqiong DENG</p>
                 <script>
@@ -296,7 +394,7 @@ class ProjectView(val service: PipelineService) {
             
                      document.getElementById("add").addEventListener("click", myFunction);
                      function myFunction() {
-                         window.location.href="http://localhost:8088/add/" + getInput("num") + "/" + getInput("type")
+                         window.location.href="http://localhost:8087/add/" + getInput("num") + "/" + getInput("type")
                           + "/" + getInput("date") + "/"  + getInput("center") + "/"  + getInput("province")
                           + "/" + getInput("company") + "/"  + getInput("substance")
                           + "/" + getInput("significant") + "/"  + getInput("category");
@@ -328,7 +426,7 @@ class ProjectView(val service: PipelineService) {
                 <tr><td><button id="delete">Delete</button></td></tr>
     			</table>
 	            <br>
-	            <a href="http://localhost:8088/">BACK</a>
+	            <a href="http://localhost:8087/">BACK</a>
 				<br>
 				<p>Program by: Feiqiong DENG</p>
                 <script>
@@ -338,7 +436,7 @@ class ProjectView(val service: PipelineService) {
                             
                      document.getElementById("edit").addEventListener("click", myFunction);
                      function myFunction() {
-                         window.location.href="http://localhost:8088/edit/" + getInput("num") + "/" + getInput("type")
+                         window.location.href="http://localhost:8087/edit/" + getInput("num") + "/" + getInput("type")
                           + "/" + getInput("date") + "/"  + getInput("center") + "/"  + getInput("province")
                           + "/" + getInput("company") + "/"  + getInput("substance")
                           + "/" + getInput("significant") + "/"  + getInput("category") + "/" +"${editRecord.number}";
@@ -346,7 +444,7 @@ class ProjectView(val service: PipelineService) {
                       
                      document.getElementById("delete").addEventListener("click", deleteFunction);
                      function deleteFunction() {
-                         window.location.href="http://localhost:8088/deleteOne/" + "${editRecord.number}";
+                         window.location.href="http://localhost:8087/deleteOne/" + "${editRecord.number}";
                       }
                 </script>
             """
