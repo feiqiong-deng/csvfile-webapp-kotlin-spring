@@ -35,6 +35,25 @@ class ProjectView(val service: PipelineService) {
     }
 
     /**
+     * This is a function to show all records.
+     * The function will use the service object to call the getAllRecords to get all data.
+     * It will use html format to show all records to users.
+     */
+    @RequestMapping("/f")
+    fun sortllRecords(): String {
+        var result = showResults("All Records")
+        val count = service.getAllRecords().size
+
+        service.getAllRecords().forEach {
+            result += it.number + ", " + it.type + ", " + it.date + ", " +
+                    it.centre + ", " + it.province + ", " + it.company + ", " +
+                    it.substance + ", " + it.significant + ", " + it.category + "<br>"
+        }
+        result += "<br><b>Total records: $count</b>"
+        return result
+    }
+
+    /**
      * This is a function to present search page to users.
      */
     @RequestMapping("/b")
