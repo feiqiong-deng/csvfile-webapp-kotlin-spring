@@ -3,6 +3,7 @@ package com.cst8333.project.presentation
 import com.cst8333.project.business.PipelineService
 import com.cst8333.project.model.PipelineRecord
 import org.springframework.web.bind.annotation.*
+import java.rmi.Naming.list
 
 /**
  * This is a class of presentation layer to interact with users.
@@ -114,6 +115,7 @@ class ProjectView(val service: PipelineService) {
                     it.centre + ", " + it.province + ", " + it.company + ", " +
                     it.substance + ", " + it.significant + ", " + it.category + "<br>"
         }
+
         result += "<br><b>Total records: $count</b>"
         return result
     }
@@ -227,6 +229,39 @@ class ProjectView(val service: PipelineService) {
     }
 
     /**
+     * This is a function to show an editable page to edit the record to the user.
+     * @param a The input of incident number from the user.
+     * @param b The input of incident type from the user.
+     * @param mm The input of incident month from the user.
+     * @param dd The input of incident day from the user.
+     * @param yy The input of incident year from the user.
+     * @param d The input of center from the user.
+     * @param e The input of province from the user.
+     * @param f The input of company from the user.
+     * @param g The input of substance from the user.
+     * @param h The input of significance from the user.
+     * @param i The input of category from the user.
+     * After the getting all information from the users, the function will update the edited record in the datafile.
+     */
+    @RequestMapping("/search/{columns}")
+    fun searchByColumns(@PathVariable("columns") columns: String): String {
+        var result = showResults("Search Results")
+
+        var map = mutableMapOf<String, String>()
+
+        val list = "$columns".split(" ")
+
+        list.forEach {
+            val element = it.split(":")
+            val key = element[0]
+            val value = element[1]
+            map[key] = value
+        }
+        println(map)
+        return result
+    }
+
+    /**
      * This is the function to delete a record.
      * @param delete The input of incident number from the user.
      * After searching the record from the datafile, the record will be deleted.
@@ -235,6 +270,14 @@ class ProjectView(val service: PipelineService) {
     fun deleteRecords(@PathVariable("delete") delete: String): String {
         service.deleteOneRecord("$delete")
         return messages("deleted")
+    }
+
+    /**
+     * This is a function to present search page to users.
+     */
+    @RequestMapping("/g")
+    fun searchRecords(): String {
+        return searchPageByColumns()
     }
 
     /**
@@ -398,6 +441,72 @@ class ProjectView(val service: PipelineService) {
                           + "/" + getInput("date") + "/"  + getInput("center") + "/"  + getInput("province")
                           + "/" + getInput("company") + "/"  + getInput("substance")
                           + "/" + getInput("significant") + "/"  + getInput("category");
+                      }
+                </script>
+            """
+    }
+
+    /**
+     * This is a function to present the adding page to users using html format.
+     */
+    fun searchPageByColumns(): String {
+        return """
+            	<b>Please enter keywords you want to search:</b>
+				<br>
+				<br>
+				<table>
+        		<tr><td>Number: </td><td><input id="num" type="text" onblur="getInput(\""+ num+ "\")"/></td></tr>
+                <tr><td>Type: </td><td><input id="type" type="text" onblur="getInput(\""+ type+ "\")"/></td></tr>
+        		<tr><td>Date: </td><td><input id="date" type="text" onblur="getInput(\""+ date+ "\")"/></td></tr>
+        		<tr><td>Center: </td><td><input id="center" type="text" onblur="getInput(\""+ center+ "\")"/></td></tr>
+        		<tr><td>Province: </td><td><input id="province" type="text" onblur="getInput(\""+ province+ "\")"/></td></tr>
+        		<tr><td>Company: </td><td><input id="company" type="text" onblur="getInput(\""+ company+ "\")"/></td></tr>
+        		<tr><td>Substance: </td><td><input id="substance" type="text" onblur="getInput(\""+ substance+ "\")"/></td></tr>
+        		<tr><td>Significant: </td><td><input id="significant" type="text" onblur="getInput(\""+ significant+ "\")"/></td></tr>
+        		<tr><td>Category: </td><td><input id="category" type="text" onblur="getInput(\""+ category+ "\")"/></td></tr>                   
+                <tr><td><button id="add">SEARCH</button></td></tr>
+    			</table>
+	            <br>
+	            <a href="http://localhost:8087/">BACK</a>
+				<br>
+				<p>Program by: Feiqiong DENG</p>
+                <script>
+                    function getInput(input)  {
+                     return document.getElementById(input).value;
+                    }
+            
+                     document.getElementById("add").addEventListener("click", myFunction);
+                     function myFunction() {
+                         var url = window.location.href;
+                         url = "http://localhost:8087/search/";
+                         if(getInput("num") != "") {
+                          url += "number:" + getInput("num") + " "
+                         }
+                         if(getInput("type") != "") {
+                          url += "type:" + getInput("type") + " "
+                         }
+                          if(getInput("date") != "") {
+                          url += "date:" + getInput("date") + " "
+                         }
+                          if(getInput("center") != "") {
+                          url += "center:" + getInput("center") + " "
+                         }
+                          if(getInput("province") != "") {
+                          url += "province:" + getInput("province") + " "
+                         }
+                          if(getInput("company") != "") {
+                          url += "company:" + getInput("company") + " "
+                         }
+                          if(getInput("substance") != "") {
+                          url += "substance:" + getInput("substance") + " "
+                         }
+                          if(getInput("significant") != "") {
+                          url += "significant:" + getInput("significant") + " "
+                         }
+                          if(getInput("category") != "") {
+                          url += "category:" + getInput("category") + " "
+                         }
+                      window.location.href = url;
                       }
                 </script>
             """

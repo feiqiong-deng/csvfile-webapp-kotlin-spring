@@ -18,4 +18,6 @@ interface PipelineDataSource {
     fun editOneRecord(newRecord: PipelineRecord, number: String)
     fun deleteOneRecord(number: String)
     fun getSortedResults(sortBy: String): Collection<PipelineRecord>
+    fun getResultsByColumns(columns: Map<String, String>): Collection<PipelineRecord>
+
 }

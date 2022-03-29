@@ -151,6 +151,29 @@ class PipelineData : PipelineDataSource {
     }
 
     /**
+     * This is a function to use getAllRecords() to get all records from the file.
+     * List is a basic data structure in Kotlin and is mutable data structure.
+     * Getting the values of the sorted criterion.
+     * @param sortBy The input sorting criterion from a user.
+     * Use the built-in sorted API to sort records by a specific column.
+     */
+    override fun getResultsByColumns(columns: Map<String, String>): Collection<PipelineRecord> {
+        var list = getAllRecords()
+        var results = ArrayList<PipelineRecord>()
+
+        columns.keys.forEach {
+            when (it) {
+
+
+            }
+        }
+
+
+
+        return results
+    }
+
+    /**
      * This is a function to transfer the data from the file to pipeline object.
      * @param record The CSVRecord input reading data from a file.
      * @param list The ArrayList input for the function and will be populated by the records of the dataset file.
