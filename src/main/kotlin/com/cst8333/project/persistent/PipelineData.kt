@@ -1,6 +1,7 @@
 package com.cst8333.project.persistent
 
 import com.cst8333.project.model.PipelineRecord
+import org.apache.catalina.valves.rewrite.InternalRewriteMap.LowerCase
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVPrinter
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Repository
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.io.path.Path
 import kotlin.io.path.bufferedReader
 import kotlin.io.path.exists
@@ -157,20 +160,54 @@ class PipelineData : PipelineDataSource {
      * @param sortBy The input sorting criterion from a user.
      * Use the built-in sorted API to sort records by a specific column.
      */
-    override fun getResultsByColumns(columns: Map<String, String>): Collection<PipelineRecord> {
-        var list = getAllRecords()
-        var results = ArrayList<PipelineRecord>()
+    override fun getResultsByColumns(columns: MutableMap<String, String>): Collection<PipelineRecord> {
+        var allRecords = getAllRecords()
+        var list = ArrayList<PipelineRecord>()
 
-        columns.keys.forEach {
-            when (it) {
+            for (record in allRecords) {
+                val number = formatString(record.number)
+                val type = formatString(record.type)
+                val date = formatString(record.date)
+                val centre = formatString(record.centre)
+                val province = formatString(record.province)
+                val company = formatString(record.company)
+                val substance = formatString(record.substance)
+                val significant = formatString(record.significant)
+                val category = formatString(record.category)
 
+                var result = 0
 
-            }
+                columns.keys.forEach {
+                    val value = columns[it] as String
+                    when (it) {
+                        "number" -> result += checkMatch(value, number)
+                        "type" -> result += checkMatch(value, type)
+                        "date" -> result += checkMatch(value, date)
+                        "center" -> result += checkMatch(value, centre)
+                        "province" -> result += checkMatch(value, province)
+                        "company" -> result += checkMatch(value, company)
+                        "substance" -> result += checkMatch(value, substance)
+                        "significant" -> result += checkMatch(value, significant)
+                        "category" -> result += checkMatch(value, category)
+                    }
+                }
+                if (result == columns.size){
+                    list.add(record)
+                }
         }
+        return list
+    }
 
+    fun checkMatch(match: String, value: String): Int {
+        var result = 0
+        if(value.contains(match)) {
+            result += 1
+        }
+        return result
+    }
 
-
-        return results
+    fun formatString(string: String): String {
+        return string.lowercase().replace("\\s".toRegex(), "")
     }
 
     /**

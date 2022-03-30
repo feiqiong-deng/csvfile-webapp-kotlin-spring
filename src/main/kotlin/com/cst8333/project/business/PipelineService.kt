@@ -19,4 +19,5 @@ class PipelineService(val source: PipelineData) {
     fun editOneRecord(newRecord: PipelineRecord, number: String) = source.editOneRecord(newRecord, number)
     fun deleteOneRecord(number: String) = source.deleteOneRecord(number)
     fun getSortedResults(sortBy: String) = source.getSortedResults(sortBy)
+    fun getResultsByColumns(columns: MutableMap<String, String>) = source.getResultsByColumns(columns)
 }

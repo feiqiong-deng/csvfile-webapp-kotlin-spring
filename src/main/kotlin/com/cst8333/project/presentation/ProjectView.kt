@@ -257,7 +257,18 @@ class ProjectView(val service: PipelineService) {
             val value = element[1]
             map[key] = value
         }
+
         println(map)
+        val searchResults = service.getResultsByColumns(map)
+        val count = searchResults.count()
+
+        searchResults.forEach {
+            result += it.number + ", " + it.type + ", " + it.date + ", " +
+                    it.centre + ", " + it.province + ", " + it.company + ", " +
+                    it.substance + ", " + it.significant + ", " + it.category + "<br>"
+        }
+        result += "<br><b>Total records: $count</b>"
+
         return result
     }
 
@@ -480,31 +491,31 @@ class ProjectView(val service: PipelineService) {
                          var url = window.location.href;
                          url = "http://localhost:8087/search/";
                          if(getInput("num") != "") {
-                          url += "number:" + getInput("num") + " "
+                          url += "number:" + getInput("num").toLowerCase().replace(/\s/g, '') + " "
                          }
                          if(getInput("type") != "") {
-                          url += "type:" + getInput("type") + " "
+                          url += "type:" + getInput("type").toLowerCase().replace(/\s/g, '') + " "
                          }
                           if(getInput("date") != "") {
-                          url += "date:" + getInput("date") + " "
+                          url += "date:" + getInput("date").toLowerCase().replace(/\s/g, '') + " "
                          }
                           if(getInput("center") != "") {
-                          url += "center:" + getInput("center") + " "
+                          url += "center:" + getInput("center").toLowerCase().replace(/\s/g, '') + " "
                          }
                           if(getInput("province") != "") {
-                          url += "province:" + getInput("province") + " "
+                          url += "province:" + getInput("province").toLowerCase().replace(/\s/g, '') + " "
                          }
                           if(getInput("company") != "") {
-                          url += "company:" + getInput("company") + " "
+                          url += "company:" + getInput("company").toLowerCase().replace(/\s/g, '') + " "
                          }
                           if(getInput("substance") != "") {
-                          url += "substance:" + getInput("substance") + " "
+                          url += "substance:" + getInput("substance").toLowerCase().replace(/\s/g, '') + " "
                          }
                           if(getInput("significant") != "") {
-                          url += "significant:" + getInput("significant") + " "
+                          url += "significant:" + getInput("significant").toLowerCase().replace(/\s/g, '') + " "
                          }
                           if(getInput("category") != "") {
-                          url += "category:" + getInput("category") + " "
+                          url += "category:" + getInput("category").toLowerCase().replace(/\s/g, '') + " "
                          }
                       window.location.href = url;
                       }
