@@ -10,6 +10,8 @@ import com.cst8333.project.model.PipelineRecord
  * The getSearchResults function is to search specific records.
  * The addOneRecord function is to perform editing record functionality.
  * The deleteOneRecord function is to perform deleting record functionality.
+ * The getSortedResults function is to sort all records based on a specific condition.
+ * The getResultsByColumns function is to search records based on multiple columns at the same time.
  */
 interface PipelineDataSource {
     fun getAll(): Collection<PipelineRecord>
@@ -19,5 +21,4 @@ interface PipelineDataSource {
     fun deleteOneRecord(number: String)
     fun getSortedResults(sortBy: String): Collection<PipelineRecord>
     fun getResultsByColumns(columns: MutableMap<String, String>): Collection<PipelineRecord>
-
 }
