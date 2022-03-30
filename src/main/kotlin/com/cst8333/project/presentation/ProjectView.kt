@@ -229,19 +229,11 @@ class ProjectView(val service: PipelineService) {
     }
 
     /**
-     * This is a function to show an editable page to edit the record to the user.
-     * @param a The input of incident number from the user.
-     * @param b The input of incident type from the user.
-     * @param mm The input of incident month from the user.
-     * @param dd The input of incident day from the user.
-     * @param yy The input of incident year from the user.
-     * @param d The input of center from the user.
-     * @param e The input of province from the user.
-     * @param f The input of company from the user.
-     * @param g The input of substance from the user.
-     * @param h The input of significance from the user.
-     * @param i The input of category from the user.
-     * After the getting all information from the users, the function will update the edited record in the datafile.
+     * This is a function to show a page to get multiple search keywords from the user.
+     * @param columns all search keywords which are separated by space combine as a string
+     * After the getting all search keywords from the users, the function at service layer
+     * will be called and then invokes function in the persistent layer to search in the
+     * dataset based on multiple columns at same time.
      */
     @RequestMapping("/search/{columns}")
     fun searchByColumns(@PathVariable("columns") columns: String): String {
@@ -284,7 +276,8 @@ class ProjectView(val service: PipelineService) {
     }
 
     /**
-     * This is a function to present search page to users.
+     * This is to map to the page asking users enter multiple keywords to search records.
+     * This page will get multiple inputs of searching keywords from the user.
      */
     @RequestMapping("/g")
     fun searchRecords(): String {

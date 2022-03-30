@@ -154,16 +154,17 @@ class PipelineData : PipelineDataSource {
     }
 
     /**
-     * This is a function to use getAllRecords() to get all records from the file.
-     * List is a basic data structure in Kotlin and is mutable data structure.
-     * Getting the values of the sorted criterion.
-     * @param sortBy The input sorting criterion from a user.
-     * Use the built-in sorted API to sort records by a specific column.
+     * This is a function to use getResultsByColumns() to get all records based
+     * on multiple columns at same time from the file.
+     * @param columns The input searching criterion from a user.
+     * This function firstly get all records from dataset and create a list of PipelineData objects.
+     * Then getting each property of an object to compare whether each property contains the search
+     * keyword for the column. If the object's properties match the user search keywords for
+     * corresponding fields, the object will be added to the list of results.
      */
     override fun getResultsByColumns(columns: MutableMap<String, String>): Collection<PipelineRecord> {
         var allRecords = getAllRecords()
         var list = ArrayList<PipelineRecord>()
-
             for (record in allRecords) {
                 val number = formatString(record.number)
                 val type = formatString(record.type)
@@ -191,6 +192,7 @@ class PipelineData : PipelineDataSource {
                         "category" -> result += checkMatch(value, category)
                     }
                 }
+
                 if (result == columns.size){
                     list.add(record)
                 }
@@ -198,6 +200,12 @@ class PipelineData : PipelineDataSource {
         return list
     }
 
+    /**
+     * This is a function to check whether the Pipeline object's properties contains the search keyword.
+     * @param match The user input keyword.
+     * @param value The value of the corresponding column of a record.
+     * If the column value contains the search keyword, 1 will be returned.
+     */
     fun checkMatch(match: String, value: String): Int {
         var result = 0
         if(value.contains(match)) {
@@ -206,6 +214,10 @@ class PipelineData : PipelineDataSource {
         return result
     }
 
+    /**
+     * This function is to format the string to remove spaces between strings and make every letter to lowercase.
+     * @param string The string to be formatted.
+     */
     fun formatString(string: String): String {
         return string.lowercase().replace("\\s".toRegex(), "")
     }
